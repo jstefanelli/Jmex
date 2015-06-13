@@ -7,12 +7,14 @@ include 'header.php';
         <meta charset="utf-8" />
         <title>JMex beta</title>
         <script type="text/javascript" src="scripts.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
     </head>
-    <body>
-        <div>
+
         <?php
 if(!isset($_SESSION['name'])){
     if(!isset($_POST['login'])){?>
+     <body >
+        <div>
             <form method="post" action="#" id="loginForm">
                 <label for="username">Username: </label>
                 <input type="text" id="username" name="username"><br />
@@ -32,11 +34,14 @@ if(!isset($_SESSION['name'])){
             $rows = mysqli_fetch_array($xget);
             $dbpsw = $rows["psw"];
             if($dbpsw == $password){
-                session_start();
+                $UUID = hash("sha256", microtime(true).$_SERVER['REMOTE_ADDR'].rand());
                 $_SESSION['name'] = $username;
-                $query2 = mysqli_query($conn, "UPDATE users SET logged = 1 WHERE name = '$username'");
+                $_SESSION['hash'] = $UUID;
+                $myNow = new DateTime("Now");
+                $query2 = mysqli_query($conn, "UPDATE users SET logged = '$UUID', lastActivity = now() WHERE name = '$username'");
                 if($query2){
                     echo "Succesfully logged.";
+                    header("location: .");
                 }
             }else{
                 die("Wrong password");
@@ -45,6 +50,48 @@ if(!isset($_SESSION['name'])){
     }
 }else{
 
+    if(!isset($_POST['logout'])){
+        ?><script>
+        function addusers(){
+        <?php
+        $usersquery = mysqli_query($conn, "SELECT * FROM USERS WHERE logged != '0'");
+        $usersrows = mysqli_num_rows($usersquery);
+        for(;$usersrows > 0; $usersrows--){
+            $array = mysqli_fetch_array($usersquery);
+            $name = "'".$array['name']."'";
+            print "addUser($name);";
+        }
+        $myHash = $_SESSION['hash'];
+        $myquery = mysqli_query($conn, "SELECT * FROM users WHERE logged = '$myHash'");
+        $myRows = mysqli_num_rows($myquery);
+        if($myRows != 1){
+            unset($_SESSION['name']);
+            unset($_SESSION['hash']);
+            header("location: .");
+        }else{
+            $myarray = mysqli_fetch_array($myquery);
+            $myname = $myarray['name'];
+            print "setme('$myname');";
+        }
+        ?>
+        }
+        </script>
+    <body onload="addusers()">
+        <div>
+            <div class="messageDiv">
+                <input type="text" id="messageText">
+                <button onclick="sendMessage()" id="sendButton">Send</button>
+            </div>
+            <form method="post" action="#" id="logoutForm">
+                <input type="submit" name="logout" value="Logout" id="lgogut">
+            </form>
+    <?php
+
+    }else{
+        unset($_SESSION['name']);
+        unset($_SESSION['hash']);
+        header("location: .");
+    }
 }
         ?>
         </div>

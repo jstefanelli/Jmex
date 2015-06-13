@@ -1,5 +1,5 @@
 <?php
-
+    session_start();
 	$servername = "localhost";
 	$username = "root";
 	$password  = "";
@@ -15,4 +15,5 @@
         die("database not found");
     }
     mb_internal_encoding('UTF-8');
+
 ?>
