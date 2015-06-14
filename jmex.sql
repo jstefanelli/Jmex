@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Giu 12, 2015 alle 19:23
+-- Generation Time: Giu 14, 2015 alle 13:53
 -- Versione del server: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -23,20 +23,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `messages`
---
-
-CREATE TABLE IF NOT EXISTS `messages` (
-  `id` int(11) NOT NULL,
-  `sender` int(11) NOT NULL,
-  `receiver` int(11) NOT NULL,
-  `message` text COLLATE utf8_bin NOT NULL,
-  `received` tinyint(4) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- --------------------------------------------------------
-
---
 -- Struttura della tabella `users`
 --
 
@@ -44,26 +30,21 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL,
   `name` varchar(40) COLLATE utf8_bin NOT NULL,
   `psw` varchar(24) COLLATE utf8_bin NOT NULL,
-  `logged` tinyint(4) NOT NULL DEFAULT '0'
+  `logged` text COLLATE utf8_bin,
+  `lastActivity` datetime DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dump dei dati per la tabella `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `psw`, `logged`) VALUES
-(1, 'root', 'zDBDyaBWi9053mX4Feme0A==', 0),
-(2, 'JPS', '5hCIlSCTXrcmF9puI9Mh7g==', 1);
+INSERT INTO `users` (`id`, `name`, `psw`, `logged`, `lastActivity`) VALUES
+(1, 'root', 'zDBDyaBWi9053mX4Feme0A==', '23dfe1ebaaf152e5eff27388cbec2599e58b91d6885ae6ebfab43faf45213f78', '2015-06-13 17:38:56'),
+(2, 'JPS', '5hCIlSCTXrcmF9puI9Mh7g==', '32616440ab555848e8ac29f6ef422759f464d84559c1f152053f43c84ad8bf93', '2015-06-14 12:51:53');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `messages`
---
-ALTER TABLE `messages`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -75,11 +56,6 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for dumped tables
 --
 
---
--- AUTO_INCREMENT for table `messages`
---
-ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --
