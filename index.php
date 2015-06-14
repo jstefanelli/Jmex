@@ -74,6 +74,7 @@ if(!isset($_SESSION['name'])){
             print "setme('$myname');";
         }
         ?>
+            getMessages();
         }
         </script>
     <body onload="addusers()">

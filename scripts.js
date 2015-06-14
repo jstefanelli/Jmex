@@ -9,21 +9,28 @@ function setme(myName){
     myname = myName;
 }
 
+function getMessages(){
+        $.getJSON("demo_post.json", function(result){
+            $.each(result, function(i, field){
+                $(".messageDiv").prepend(i +": " + field + "<br>");
+            })
+        });
+
+}
+
 function sendMessage(){
     $(document).ready(function(){
-        var txt1 = "test<br>";
-        $(".messageDiv").prepend(txt1);
         var mystring = document.getElementById("messageText").value;
-        alert(mystring);
-        var mystringJson = JSON.stringify(mystring);
-        alert(mystringJson);
-        if(mystringJson !== undefined){
-            var myStringObject = {text: mystringJson};
-            $.post("demo_post.json",
-                myStringObject,
-                function(data, status){
-                    alert("Data: " + data + "\nStatus: " + status);
-                    }).fail(function(data, status){alert("error: " + status+ "\nData: " + data);}
+        //alert(mystring);
+        if(mystring !== undefined){
+            var myStringObject = {"action" : "adduser", "text": mystring , "user": myname};
+            var mystringjson = JSON.stringify(myStringObject);
+            alert(mystringjson);
+            var retval = $.post("add_message.php",
+                    myStringObject,
+                    function(data, status){
+                        //alert("Data: " + data + "\nStatus: " + status);
+                        }).fail(function(data, status){alert("error: " + status+ "\nData: " + data);}
             );
         }
     });
