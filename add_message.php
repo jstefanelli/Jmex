@@ -7,8 +7,8 @@ if(is_ajax()){
             $textJSON = json_encode($text);
             $handle = fopen("demo_post.json", 'c');
             $size = filesize("demo_post.json");
-            fseek($handle, $size -2);
-            fwrite($handle, ",\n\"message\": ".$textJSON."\n}");
+            fseek($handle, $size -5);
+            fwrite($handle, ",\n\t\t".$textJSON."\n\t]\n}");
             fclose($handle);
         }
     }

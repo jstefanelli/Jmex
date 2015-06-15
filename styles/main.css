@@ -1,0 +1,34 @@
+.header{
+    width: 100%;
+    position: relative;
+}
+
+.messageDiv{
+    position: relative;
+    float: left;
+}
+
+.formContainer{
+    position: relative;
+    float: left;
+}
+
+
+/*
+
+Typography
+
+*/
+
+h1{
+    color:  cornflowerblue;
+    font-family: verdana;
+    font-style: normal;
+    font-size: small;
+}
+
+h2{
+    font-family: verdana;
+    font-style: normal;
+    font-size: small;
+}

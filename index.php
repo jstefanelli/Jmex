@@ -8,6 +8,7 @@ include 'header.php';
         <title>JMex beta</title>
         <script type="text/javascript" src="scripts.js"></script>
         <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
+        <link href="styles/main.css" rel="stylesheet" type="text/css">
     </head>
 
         <?php
@@ -74,18 +75,23 @@ if(!isset($_SESSION['name'])){
             print "setme('$myname');";
         }
         ?>
-            getMessages();
+            load();
         }
         </script>
     <body onload="addusers()">
         <div>
-            <div class="messageDiv">
-                <input type="text" id="messageText">
-                <button onclick="sendMessage()" id="sendButton">Send</button>
+            <div class="header">
+                <div class="messageDiv">
+
+                </div>
+                <div class="formContainer">
+                    <input type="text" id="messageText">
+                        <button onclick="sendMessage()" id="sendButton">Send</button>
+                    <form method="post" action="#" id="logoutForm">
+                        <input type="submit" name="logout" value="Logout" id="lgogut">
+                    </form>
+                </div>
             </div>
-            <form method="post" action="#" id="logoutForm">
-                <input type="submit" name="logout" value="Logout" id="lgogut">
-            </form>
     <?php
 
     }else{
