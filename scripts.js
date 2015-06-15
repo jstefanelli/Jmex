@@ -16,6 +16,7 @@ function load(){
 
 
 function getMessages(){
+    $.ajaxSetup({ cache: false });
     var myi = 0;
     var d = new Date();
     var jqxhr = $.getJSON("demo_post.json", function(result){

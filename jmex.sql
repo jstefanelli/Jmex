@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Giu 14, 2015 alle 13:53
+-- Generation Time: Giu 15, 2015 alle 16:08
 -- Versione del server: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -32,15 +32,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `psw` varchar(24) COLLATE utf8_bin NOT NULL,
   `logged` text COLLATE utf8_bin,
   `lastActivity` datetime DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dump dei dati per la tabella `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `psw`, `logged`, `lastActivity`) VALUES
-(1, 'root', 'zDBDyaBWi9053mX4Feme0A==', '23dfe1ebaaf152e5eff27388cbec2599e58b91d6885ae6ebfab43faf45213f78', '2015-06-13 17:38:56'),
-(2, 'JPS', '5hCIlSCTXrcmF9puI9Mh7g==', '32616440ab555848e8ac29f6ef422759f464d84559c1f152053f43c84ad8bf93', '2015-06-14 12:51:53');
+(1, 'root', 'zDBDyaBWi9053mX4Feme0A==', '336de06a69e6ebe8fcaa98d42f8a8e58987c6d7085689632ac36cfdb897c0af9', '2015-06-15 14:29:03'),
+(2, 'JPS', '5hCIlSCTXrcmF9puI9Mh7g==', '915a2056121e5741bbc55c3fb9e70c13691009c36afef257baef3156405d9295', '2015-06-15 14:35:19'),
+(3, 'CAFFA', 'clE8WsVdRlnFmfkD2lLe9g==', 'd481f0556729b92a345a29601ead8d7fd4673e6e7b61c0663ff11007c53f32e8', '2015-06-15 15:36:21'),
+(4, 'Wasson01', 'bmvE5J3Ud+vJjvQEbAZ7Xw==', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -60,7 +62,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

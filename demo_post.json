@@ -1,15 +1,5 @@
 {
     "messages": [
-		{"action":"adduser","text":"DIO CANE","user":"CAFFA"},
-		{"action":"adduser","text":"DIO CANE","user":"CAFFA"},
-		{"action":"adduser","text":"ciao!","user":"JPS"},
-		{"action":"adduser","text":"mannaggia a quel porcaccio di seu!","user":"JPS"},
-		{"action":"adduser","text":"ZIO PANE","user":"CAFFA"},
-		{"action":"adduser","text":"ciao","user":"CAFFA"},
-		{"action":"adduser","text":"culo!","user":"JPS"},
-		{"action":"adduser","text":"porco seu!","user":"JPS"},
-		{"action":"adduser","text":"mannaggia al cazzo! funzionaaaaa!","user":"JPS"},
-		{"action":"adduser","text":"zurigo","user":"CAFFA"},
-		{"action":"adduser","text":"perme e colpa della svizzera","user":"CAFFA"}
-	]
+        {"action":"adduser","text":"primo post","user":"Server"}
+    ]
 }

@@ -3,13 +3,27 @@ if(is_ajax()){
     if(isset($_POST["action"])){
         $action = $_POST["action"];
         if($action == "adduser"){
-            $text = $_POST;
-            $textJSON = json_encode($text);
-            $handle = fopen("demo_post.json", 'c');
-            $size = filesize("demo_post.json");
-            fseek($handle, $size -5);
-            fwrite($handle, ",\n\t\t".$textJSON."\n\t]\n}");
-            fclose($handle);
+            $jaction = $_POST['text'];
+            if($jaction != 'order66'){
+                $text = $_POST;
+                $textJSON = json_encode($text);
+                $handle = fopen("demo_post.json", 'c');
+                $size = filesize("demo_post.json");
+                fseek($handle, $size -5);
+                fwrite($handle, ",\n\t\t".$textJSON."\n\t]\n}");
+                fclose($handle);
+            }else{
+                $handle = fopen("demo_post.json", "r+");
+                ftruncate($handle, 0);
+                fseek($handle, 0);
+                $string = '{
+    "messages": [
+        {"action":"adduser","text":"primo post","user":"Server"}
+    ]
+}';
+                fwrite($handle, $string);
+                fclose($handle);
+            }
         }
     }
 }

@@ -24,6 +24,7 @@ h1{
     color:  cornflowerblue;
     font-family: verdana;
     font-style: normal;
+    font-weight: 400;
     font-size: small;
 }
 
@@ -31,4 +32,5 @@ h2{
     font-family: verdana;
     font-style: normal;
     font-size: small;
+    font-weight: 400;
 }

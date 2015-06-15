@@ -10,7 +10,7 @@
 	if(!$conn){
 		die("Connection failed: " . mysqli_connect_error());
 	}
-    $db = mysqli_select_db($conn, "jmex");
+    $db = mysqli_select_db($conn, "my_jmex");
     if(!$db){
         die("database not found");
     }
