@@ -1,6 +1,7 @@
 body{
     padding: 0 !important;
     margin: 0 !important;
+    background-color: #c8c8c8;
 }
 
 .header{
@@ -16,6 +17,7 @@ body{
 .messageDiv{
     margin: 15px;
     height: 400px;
+    overflow-y:auto;
 }
 
 .formContainer{
@@ -71,10 +73,52 @@ body{
     border-width: 1px;
     border-style: solid;
     border-color: #dadada;
+    box-shadow: 1px 2px 5px 0.00px rgba(0, 0, 0, 0.41);
+    background-color: white;
     float: left;
     margin: 0;
 }
 
+.loginDiv {
+    width: 298px;
+    height: 298px;
+    border-color: #dadada;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #ffffff;
+    box-shadow: 1px 2px 5px 0.00px rgba(0, 0, 0, 0.26);
+    margin-top: 25px;
+    margin-left: 25px;
+    padding: 15px;
+    margin-right: 25px;
+    float: left;
+}
+
+#loginusername{
+    width: 180px;
+    height: 30px;
+    background-color: #ffffff;
+    color:#3f51b5;
+    border-color: #3f51b5;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 18px;
+    float:right;
+    display: table-cell;
+}
+
+#loginpassword{
+    width: 180px;
+    height: 30px;
+    background-color: #ffffff;
+    color:#3f51b5;
+    border-color: #3f51b5;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 18px;
+    float: right;
+    display: table-cell;
+}
 /*
 
 Buttons
@@ -126,7 +170,52 @@ Buttons
     font-family: Roboto;
     font-size: 18px;
     font-weight: 300;
+
 }
+
+#loginForm{
+    display: table;
+    width: 270px;
+    clear: both;
+ }
+
+p {
+    display: table-row;
+}
+
+label{
+    display: table-cell;
+}
+
+#login{
+    width: 100px;
+    height: 30px;
+    background-color: #3f51b5;
+    box-shadow: 1px 2px 5px 0.00px rgba(0, 0, 0, 0.3);
+    color: white;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 300;
+    border: 0;
+    margin-top:150px;
+}
+
+#register{
+    width: 100px;
+    height: 30px;
+    background-color: #3f51b5;
+    box-shadow: 1px 2px 5px 0.00px rgba(0, 0, 0, 0.3);
+    color: white;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 300;
+    border: 0;
+    margin-top:112px;
+}
+
+
+
+
 
 /*
 
@@ -183,4 +272,20 @@ h5{
     text-align: center;
     margin: 0 !important;
     margin-top: 14px !important;
+}
+
+h6 {
+    font-size: 30px;
+    font-family: Roboto;
+    font-weight: 500;
+    color:#3f51b5;
+    margin: 0;
+}
+
+h7 {
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 300;
+    color:#3f51b5;
+    margin: 0;
 }

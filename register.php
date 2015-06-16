@@ -1,14 +1,23 @@
 <?php
 if(!isset($_POST['register'])){?>
+    <div class="loginDiv">
+        <h6>Registrati</h6>
     <form method="post" action="#">
-        <label for="regusername">Username: </label>
-        <input type="text" name="regusername" id="regusername"><br />
-        <label for="regpassword">Password: </label>
-        <input type="password" name="regpassword" id="regpassword"><br />
-        <label for="repassword">Repeat password: </label>
-        <input type="password" name="repassword" id="repassword"> <br />
+        <p>
+            <label for="regusername"><h7>Username:</h7> </label>
+        <input type="text" name="regusername" id="loginusername"><br />
+        </p>
+        <p>
+            <label for="regpassword"><h7>Password:</h7> </label>
+        <input type="password" name="regpassword" id="loginpassword"><br />
+        </p>
+        <p>
+            <label for="repassword"><h7>Ripeti password: </h7></label>
+        <input type="password" name="repassword" id="loginpassword"> <br />
+        </p>
         <input type="submit" name="register" id="register" value="Register">
     </form>
+    </div>
 <?php
 }else{
 $username = $_POST['regusername'];
