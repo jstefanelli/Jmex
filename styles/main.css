@@ -1,20 +1,135 @@
+body{
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
 .header{
     width: 100%;
     position: relative;
+    height: 100px;
+    weight: 100%;
+    background-color: #3F51B5;
+    box-shadow: 1px 2px 5px 0.00px rgba(0, 0, 0, 0.41);
+    margin-bottom: 25px;
 }
 
 .messageDiv{
-    position: relative;
-    float: left;
+    margin: 15px;
+    height: 400px;
 }
 
 .formContainer{
-    position: relative;
+    width: 100%;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    height: 35px;
+}
+
+.title {
+    width:  300px;
+    height: 100px;
     float: left;
 }
 
+.logout {
+    width: 180px;
+    height: 30px;
+    margin-right: 80;
+    margin-top: 35px;
+    float: right;
+}
+
+.content {
+    margin-left: 25px;
+    width: 675px;
+    height: 475px;
+
+}
+
+.roomSelector {
+    width: 175px;
+    height: 100%;
+    float: left;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.currentRoom {
+    margin: 0;
+    width: 175px;
+    height:50px;
+    background-color: #3f51b5;
+    box-shadow: 1px 2px 5px 0.00px rgba(0, 0, 0, 0.35);
+    float:left;
+
+}
+
+.messageContainer{
+    width: 498px;
+    height: 100%;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #dadada;
+    float: left;
+    margin: 0;
+}
 
 /*
+
+Buttons
+
+*/
+
+.logoutBtn{
+    background-color: white;
+    width: 100px;
+    height: 30px;
+    color: #3F51B5;
+    font-family: Roboto;
+    font-weight: 300;
+    font-size: 18px;
+    border: 0;
+}
+
+.logoutBtn:hover {
+    background-color: #3F51B5;
+    color:white;
+    border: 1px solid white;
+}
+
+.sendButton {
+    background-color:#3f51b5;
+    height: 35px;
+    width: 100px;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 300;
+    color: #ffffff;
+    border: 0;
+ }
+
+.sendButton:hover{
+    background-color: white;
+    color: #3f51b5;
+    border: 1px solid #3f51b5;
+}
+
+#messageText{
+    width: 352px;
+    height: 33px;
+    margin-right: 15px;
+    color:#3f51b5;
+    border-color: #3f51b5;
+    border-style: solid;
+    border-width: 1px;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+/*
+
 
 Typography
 
@@ -33,4 +148,39 @@ h2{
     font-style: normal;
     font-size: small;
     font-weight: 400;
+}
+
+h3 {
+    padding: 0 !important;
+    margin-top: 0 !important;
+    margin-left: 19px !important;
+    margin-bottom: 0 !important;
+    margin-right: 0 !important;
+    font-family:Roboto;
+    font-size: 72px;
+    font-weight: 100;
+    color: white;
+    float: left;
+}
+
+h4{
+    padding: 0 !important;
+    padding-top: 40px !important;
+    padding-left: 10px !important;
+    margin: 0 !important;
+    border: 0 !important;
+    font-family: Roboto;
+    color: white;
+    font-size: 30px;
+    float: left;
+}
+
+h5{
+    font-family: Roboto;
+    font-size:18px;
+    font-weight: 700;
+    color:#ffffff;
+    text-align: center;
+    margin: 0 !important;
+    margin-top: 14px !important;
 }

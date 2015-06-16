@@ -11,9 +11,22 @@ function setme(myName){
 }
 
 function load(){
-    window.setInterval(getMessages, 2000);
+    window.setInterval(getMessages, 100);
 }
 
+function getUsers(){
+    var repo = $.getJSON("getUsers.php", function(result){}).success(function(result){
+        console.log(result.response);
+        userlist = JSON.parse(result.responseText);
+        for(var user in userlist){
+            $('#cbx').epmty();
+            $('#cbx').append('<option value="user">' + user + "</option>")
+        }
+    }).error(function(result){
+     console.log(result);
+    });
+
+}
 
 function getMessages(){
     $.ajaxSetup({ cache: false });
@@ -66,8 +79,7 @@ function sendMessage(){
                     function(data, status){
                         //alert("Data: " + data + "\nStatus: " + status);
                         getMessages();
-                        }).fail(function(data, status){alert("error: " + status+ "\nData: " + data);}
-            );
+                        }).fail(function(data, status){alert("error: " + status+ "\nData: " + data);});
         }
     });
 

@@ -6,6 +6,7 @@ if(is_ajax()){
             $jaction = $_POST['text'];
             if($jaction != 'order66'){
                 $text = $_POST;
+                $text['text'] = htmlspecialchars($text['text'], ENT_QUOTES);
                 $textJSON = json_encode($text);
                 $handle = fopen("demo_post.json", 'c');
                 $size = filesize("demo_post.json");

@@ -25,23 +25,38 @@ function addusers(){
         }
 ?>
     load();
-    setupConversation();
 }
 </script>
 <body onload="addusers()">
 <div>
     <div class="header">
+        <div class="title">
+            <h3>JMex </h3><h4> BETA</h4>
+        </div>
+        <div class="logout">
+            <form method="post" action="#" id="logoutForm">
+                <input type="submit" name="logout" value="Logout" class="logoutBtn">
+            </form>
+        </div>
+    </div>
+    <div class="content">
+        <div class="roomSelector">
+            <div class="currentRoom">
+                <h5>#global</h5>
+            </div>
+        </div>
+        <div class="messageContainer">
         <div class="messageDiv">
 
         </div>
         <div class="formContainer">
             <input type="text" id="messageText">
-                <button onclick="sendMessage()" id="sendButton">Send</button>
-            <form method="post" action="#" id="logoutForm">
-                <input type="submit" name="logout" value="Logout" id="lgogut">
-            </form>
+            <button onclick="sendMessage()" class="sendButton">Send</button>
+            <br>
+
 
         </div>
+    </div>
     </div>
 <?php
 
