@@ -47,9 +47,8 @@ if(is_ajax()){
                     $filesize = filesize($filename);
                     $fileText = fread($handle, $filesize);
                     $fileDecode = json_decode($fileText, true);
-                    unset($filedecode['messages']);
-                    $filedecode['messages'] = array();
-                    $fileEncoded = json_encode($filedecode);
+                    $fileDecode['messages'] = array();
+                    $fileEncoded = json_encode($fileDecode);
                     ftruncate($handle, 0);
                     fseek($handle, 0);
                     fwrite($handle, $fileEncoded);

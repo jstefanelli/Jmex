@@ -5,6 +5,7 @@ var conversations = new Array();
 var currentConversation = "demo_post";
 var currentCoversationId = 1;
 var lastConversation = "demo_post";
+var lastDivId = "room1";
 
 function addUser(user){
     userlist.push(user);
@@ -42,7 +43,7 @@ function getConversations(){
                 conversations.push(res[i]);
             }
             for(var i = 0; i < conversations.length; i++){
-                $(".roomSelector").append('<div class="otherRoom" onclick="selectConversation(\'' + conversations[i]['name'] +'\')"  id="room' + conversations[i]['id'].toString() +'"><h8>#' + conversations[i]['name'] +'</h8></div>');
+                $(".roomSelector").append('<div class="otherRoom" onclick="selectConversation(\'' + conversations[i]['name'] +'\', \'room' + conversations[i]['id'].toString() +'\')"  id="room' + conversations[i]['id'].toString() +'"><h8>#' + conversations[i]['name'] +'</h8></div>');
 
             }
         });
@@ -50,11 +51,16 @@ function getConversations(){
 
 }
 
-function selectConversation(convName){
+function selectConversation(convName, divid){
     if(convName == "general"){
         currentConversation = "demo_post";
     }else{
         currentConversation = convName;
+    }
+    if(lastDivId != divid){
+        $("#" + divid).attr('class', 'currentRoom');
+        $("#" + lastDivId).attr('class', 'otherRoom');
+        lastDivId = divid;
     }
 }
 
@@ -137,6 +143,17 @@ function sendMessage(){
     });
 
 }
+
+function getRandomColor() {
+	var letters = '0123456789ABCDEF'.split('');
+	var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+    	color += letters[Math.floor(Math.random() * 16)];
+    }
+return color; }
+var ti=setInterval(function(){
+	document.getElementsByClassName("header")[0].style.backgroundColor=getRandomColor();
+    }, 1000);
 
 function addConversation(){
     $.post("addConversation.php", {'user' : myname, 'convname' : 'test_extra'}, function(result){}).success(function(result){
