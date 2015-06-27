@@ -49,9 +49,10 @@ if(is_ajax()){
                     $fileDecode = json_decode($fileText, true);
                     unset($filedecode['messages']);
                     $filedecode['messages'] = array();
+                    $fileEncoded = json_encode($filedecode);
                     ftruncate($handle, 0);
                     fseek($handle, 0);
-                    fwrite($handle, $string);
+                    fwrite($handle, $fileEncoded);
                     fclose($handle);
                 }
             }else{
