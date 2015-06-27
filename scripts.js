@@ -6,6 +6,7 @@ var currentConversation = "demo_post";
 var currentCoversationId = 1;
 var lastConversation = "demo_post";
 var lastDivId = "room1";
+var forceupdate = false;
 
 function addUser(user){
     userlist.push(user);
@@ -22,7 +23,7 @@ function load(){
                 $('.sendButton').click();
         });
     });
-    window.setInterval(getMessages, 100);
+    window.setInterval(getMessages, 200);
     conversations.push({"id" : 1, "name" : "general", "filename" : "demo_post.json"});
     getConversations();
 }
@@ -62,6 +63,7 @@ function selectConversation(convName, divid){
         $("#" + lastDivId).attr('class', 'otherRoom');
         lastDivId = divid;
     }
+    forceupdate = true;
 }
 
 function getUsers(){
@@ -89,7 +91,8 @@ function getMessages(){
         var myi = JSON.parse(result.responseText);
         var messages = myi.messages;
         var lastuser = "";
-        if(lastMessages.length != messages.length || currentConversation != lastConversation){
+        if(lastMessages.length != messages.length || currentConversation != lastConversation || forceupdate){
+      		forceupdate = false;
             lastConversation = currentConversation;
             $(".messageDiv").empty();
             console.log("updating");
@@ -157,6 +160,7 @@ var ti=setInterval(function(){
 
 function addConversation(){
     $.post("addConversation.php", {'user' : myname, 'convname' : 'test_extra'}, function(result){}).success(function(result){
+        console.log(result);
         getConversations();
     });
 }

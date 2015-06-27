@@ -19,11 +19,13 @@ if(is_ajax()){
     $conv_name = $_POST['convname'];
     $conv_file_name = $conv_name.'.json';
     if(file_exists($conv_file_name)){
-        $conv_file = fopen($conv_file_name, 'c+');
+        $conv_file = fopen($conv_file_name, 'r+');
         $conv_file_size = filesize($conv_file_name);
         $file_text = fread($conv_file, $conv_file_size);
-        $conv = json_decode($file_text);
-        $conv['users'] = $user_name;
+        $conv = json_decode($file_text, true);
+        $messages = $conv['messages'];
+        array_push($conv['users'], $user_name);
+        $conv['messages'] = $messages;
         fseek($conv_file, 0);
         ftruncate($conv_file, 0);
         $conv_text = json_encode($conv);
