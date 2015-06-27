@@ -2,8 +2,9 @@ var userlist =new Array();
 var myname;
 var lastMessages = new Array();
 var conversations = new Array();
-var currentConversation = "general";
+var currentConversation = "demo_post";
 var currentCoversationId = 1;
+var lastConversation = "demo_post";
 
 function addUser(user){
     userlist.push(user);
@@ -22,7 +23,6 @@ function load(){
     });
     window.setInterval(getMessages, 100);
     conversations.push({"id" : 1, "name" : "general", "filename" : "demo_post.json"});
-    //getConversations();
     getConversations();
 }
 
@@ -30,12 +30,11 @@ function getConversations(){
     $(document).ready(function(){
         $(".roomSelector").empty();
         $.post("getConversations.php", {'user' : myname}, function(result){}).success(function(result){
-            try{
-                var resText = result.responseText;
-                console.log(resText);
-                var res = JSON.parse(resText);
-            }catch(e){
-                console.log(e.message + " / " + e.name);
+            console.log(result);
+            if(result != undefined){
+                var res = JSON.parse(result);
+            }else{
+                res = new Array();
             }
             conversations = new Array();
             conversations.push({"id" : 1, "name" : "general", "filename" : "demo_post.json"});
@@ -43,12 +42,20 @@ function getConversations(){
                 conversations.push(res[i]);
             }
             for(var i = 0; i < conversations.length; i++){
-                $(".roomSelector").append('<div class="otherRoom" id="room' + conversations[i]['id'].toString() +'"><h8>#' + conversations[i]['name'] +'</h8></div>');
-            }
+                $(".roomSelector").append('<div class="otherRoom" onclick="selectConversation(\'' + conversations[i]['name'] +'\')"  id="room' + conversations[i]['id'].toString() +'"><h8>#' + conversations[i]['name'] +'</h8></div>');
 
+            }
         });
     });
 
+}
+
+function selectConversation(convName){
+    if(convName == "general"){
+        currentConversation = "demo_post";
+    }else{
+        currentConversation = convName;
+    }
 }
 
 function getUsers(){
@@ -69,19 +76,21 @@ function getMessages(){
     $.ajaxSetup({ cache: false });
     var myi = 0;
     var d = new Date();
-    var jqxhr = $.getJSON("demo_post.json", function(result){
+    var jqxhr = $.getJSON(currentConversation + ".json", function(result){
 
     }).complete(function(result){
         //console.log(result.responseText);
         var myi = JSON.parse(result.responseText);
         var messages = myi.messages;
         var lastuser = "";
-        if(lastMessages.length != messages.length){
+        if(lastMessages.length != messages.length || currentConversation != lastConversation){
+            lastConversation = currentConversation;
             $(".messageDiv").empty();
             console.log("updating");
             lastMessages = messages;
             var changed = false;
-            for (var i = 1; i < messages.length; i++){
+            var i = 0;
+            for (; i < messages.length; i++){
                 var obj = messages[i];
 
                 //console.log(property + ": " + obj[property]);
@@ -109,13 +118,19 @@ function sendMessage(){
         var mystring = document.getElementById("messageText").value;
         //alert(mystring);
         if(mystring != ""){
-            var myStringObject = {"action" : "postmessage", "text": mystring , "user": myname, "conv":"general"};
+            if(currentConversation == "demo_post"){
+                var myConv = "general";
+            }else{
+                var myConv = currentConversation;
+            }
+            var myStringObject = {"action" : "postmessage", "text": mystring , "user": myname, "conv": myConv};
             var mystringjson = JSON.stringify(myStringObject);
             //alert(mystringjson);
             var retval = $.post("postmessage.php",
                     myStringObject,
-                    function(data, status){
+                    function(data){
                         //alert("Data: " + data + "\nStatus: " + status);
+                        console.log(data);
                         getMessages();
                         }).fail(function(data, status){alert("error: " + status+ "\nData: " + data);});
         }
@@ -123,3 +138,8 @@ function sendMessage(){
 
 }
 
+function addConversation(){
+    $.post("addConversation.php", {'user' : myname, 'convname' : 'test_extra'}, function(result){}).success(function(result){
+        getConversations();
+    });
+}

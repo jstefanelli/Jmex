@@ -14,7 +14,7 @@
     }
     mb_internal_encoding('UTF-8');
 if(is_ajax()){
-if ($action == "addconv"){
+
     $user_name = $_POST['user'];
     $conv_name = $_POST['convname'];
     $conv_file_name = $conv_name.'.json';
@@ -43,13 +43,13 @@ if ($action == "addconv"){
             )
         );
         $conv_json = json_encode($conv);
-        fwrite($conv_file, $cov_json);
+        fwrite($conv_file, $conv_json);
         fclose($conv_file);
         $query = mysqli_query($conn, "INSERT INTO conversations (name, filename) VALUES ( '$conv_name', '$conv_file_name')");
         exit($query);
     }
 }
-}
+
 
 function is_ajax() {
   return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';

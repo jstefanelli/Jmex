@@ -1,6 +1,1 @@
-{
-    "messages": [
-        {"action":"postmessage","text":"primo post","user":"Server"},
-		{"action":"postmessage","text":"shish","user":"nuovojps","conv":"general"}
-	]
-}
+{"messages":[{"text":"mlml","user":"nuovojps"}]}

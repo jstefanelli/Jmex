@@ -20,23 +20,30 @@ if(is_ajax()){
         $query = mysqli_query($conn, "SELECT * FROM conversations");
         while($arr = mysqli_fetch_array($query)){
             $convname = $arr['name'];
-            $convfile = $arr['filename'];
-            $file = fopen($convfile, 'r');
-            $filesize = filesize($convfile);
-            $text = fread($file, $filesize);
-            fclose($file);
-            $conv = json_decode($text);
-            $size = sizeof($conv['users']);
-            for($i = 0; $i < $size; $i++){
-                if($conv['users'][$i] == $username){
-                    $conv_list[] = $arr;
+            if($convname != 'general'){
+                $convfile = $arr['filename'];
+                $file = fopen($convfile, 'r');
+                $filesize = filesize($convfile);
+                $text = fread($file, $filesize);
+                fclose($file);
+                $conv = json_decode($text, true);
+                $users = $conv['users'];
+                $size = sizeof($users);
+                for($i = 0; $i < $size; $i++){
+                    if($users[$i] == $username){
+                        $conv_list[] = $arr;
+                        break;
+                    }
                 }
+            }else{
+
             }
+
         }
         $conv_list_json = json_encode($conv_list);
         print($conv_list_json);
     }catch(Exception $e){
-        print( $e->getMessage());
+        print( 'Error');
     }
 }else{
     echo 'Not ajax';

@@ -48,8 +48,8 @@ function addusers(){
             <button onclick="sendMessage()" class="sendButton">Send</button>
             <br>
 
-
         </div>
+        <button onclick = "addConversation()">Add</button>
     </div>
     </div>
 <?php

@@ -69,11 +69,35 @@ body{
 
 .otherRoom {
     margin: 0;
+    width: 173px;
+    height:48px;
+    background-color: #ffffff;
+    border-color: #dadada;
+    border-width:  1px;
+    border-style: solid;
+    float:left;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 700;
+    color: #3f51b5;
+    text-align: center;
+    margin: 0 !important;
+    padding-top: 20px !important;
+}
+
+.otherRoom:hover {
+    margin: 0;
     width: 175px;
     height:50px;
-    background-color: #ffffff;
-    border: 1px, solid, #dadada;
+    background-color: #3f51b5;
     float:left;
+    font-family: Roboto;
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    margin: 0 !important;
+    padding-top: 20px !important;
 }
 
 .messageContainer{
@@ -340,11 +364,5 @@ h7 {
 }
 
 h8{
-    font-family: Roboto;
-    font-size:18px;
-    font-weight: 700;
-    color:#3f51b5;
-    text-align: center;
-    margin: 0 !important;
-    margin-top: 14px !important;
+
 }
