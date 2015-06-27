@@ -4,13 +4,6 @@
 <script>
 function addusers(){
 <?php
-        $usersquery = mysqli_query($conn, "SELECT * FROM USERS WHERE logged != '0'");
-        $usersrows = mysqli_num_rows($usersquery);
-        for(;$usersrows > 0; $usersrows--){
-            $array = mysqli_fetch_array($usersquery);
-            $name = "'".$array['name']."'";
-            print "addUser($name);";
-        }
         $myHash = $_SESSION['hash'];
         $myquery = mysqli_query($conn, "SELECT * FROM users WHERE logged = '$myHash'");
         $myRows = mysqli_num_rows($myquery);
@@ -45,6 +38,7 @@ function addusers(){
                 <h5>#global</h5>
             </div>
         </div>
+
         <div class="messageContainer">
         <div class="messageDiv">
 

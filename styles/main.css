@@ -67,6 +67,15 @@ body{
 
 }
 
+.otherRoom {
+    margin: 0;
+    width: 175px;
+    height:50px;
+    background-color: #ffffff;
+    border: 1px, solid, #dadada;
+    float:left;
+}
+
 .messageContainer{
     width: 498px;
     height: 100%;
@@ -81,6 +90,20 @@ body{
 
 .loginDiv {
     width: 298px;
+    height: 298px;
+    border-color: #dadada;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #ffffff;
+    box-shadow: 1px 2px 5px 0.00px rgba(0, 0, 0, 0.26);
+    margin-top: 25px;
+    margin-left: 25px;
+    padding: 15px;
+    margin-right: 25px;
+    float: left;
+}
+.registerDiv {
+    width: 498px;
     height: 298px;
     border-color: #dadada;
     border-style: solid;
@@ -109,6 +132,32 @@ body{
 
 #loginpassword{
     width: 180px;
+    height: 30px;
+    background-color: #ffffff;
+    color:#3f51b5;
+    border-color: #3f51b5;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 18px;
+    float: right;
+    display: table-cell;
+}
+
+#registerusername{
+    width: 380px;
+    height: 30px;
+    background-color: #ffffff;
+    color:#3f51b5;
+    border-color: #3f51b5;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 18px;
+    float:right;
+    display: table-cell;
+}
+
+#registerpassword{
+    width: 380px;
     height: 30px;
     background-color: #ffffff;
     color:#3f51b5;
@@ -175,7 +224,7 @@ Buttons
 
 #loginForm{
     display: table;
-    width: 270px;
+    width: 100%;
     clear: both;
  }
 
@@ -288,4 +337,14 @@ h7 {
     font-weight: 300;
     color:#3f51b5;
     margin: 0;
+}
+
+h8{
+    font-family: Roboto;
+    font-size:18px;
+    font-weight: 700;
+    color:#3f51b5;
+    text-align: center;
+    margin: 0 !important;
+    margin-top: 14px !important;
 }

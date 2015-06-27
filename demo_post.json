@@ -1,5 +1,6 @@
 {
     "messages": [
-        {"action":"adduser","text":"primo post","user":"Server"}
-    ]
+        {"action":"postmessage","text":"primo post","user":"Server"},
+		{"action":"postmessage","text":"shish","user":"nuovojps","conv":"general"}
+	]
 }

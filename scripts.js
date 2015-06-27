@@ -1,6 +1,9 @@
 var userlist =new Array();
 var myname;
 var lastMessages = new Array();
+var conversations = new Array();
+var currentConversation = "general";
+var currentCoversationId = 1;
 
 function addUser(user){
     userlist.push(user);
@@ -11,7 +14,41 @@ function setme(myName){
 }
 
 function load(){
+    $(document).ready(function(){
+        $('#messageText').keypress(function(e){
+            if(e.keyCode==13)
+                $('.sendButton').click();
+        });
+    });
     window.setInterval(getMessages, 100);
+    conversations.push({"id" : 1, "name" : "general", "filename" : "demo_post.json"});
+    //getConversations();
+    getConversations();
+}
+
+function getConversations(){
+    $(document).ready(function(){
+        $(".roomSelector").empty();
+        $.post("getConversations.php", {'user' : myname}, function(result){}).success(function(result){
+            try{
+                var resText = result.responseText;
+                console.log(resText);
+                var res = JSON.parse(resText);
+            }catch(e){
+                console.log(e.message + " / " + e.name);
+            }
+            conversations = new Array();
+            conversations.push({"id" : 1, "name" : "general", "filename" : "demo_post.json"});
+            for(var i = 0; i < res.length; i++){
+                conversations.push(res[i]);
+            }
+            for(var i = 0; i < conversations.length; i++){
+                $(".roomSelector").append('<div class="otherRoom" id="room' + conversations[i]['id'].toString() +'"><h8>#' + conversations[i]['name'] +'</h8></div>');
+            }
+
+        });
+    });
+
 }
 
 function getUsers(){
@@ -44,7 +81,7 @@ function getMessages(){
             console.log("updating");
             lastMessages = messages;
             var changed = false;
-            for (var i = 0; i < messages.length; i++){
+            for (var i = 1; i < messages.length; i++){
                 var obj = messages[i];
 
                 //console.log(property + ": " + obj[property]);
@@ -59,8 +96,9 @@ function getMessages(){
                 }
                 $(".messageDiv").prepend("<h2>" + obj['text'] + "</h2>");
             }
-        $(".messageDiv").prepend("<h1><b>" + lastuser +": </b></h1>");
-        $(".messageDiv").prepend("Updated at: " + d.toLocaleTimeString());
+            if(lastuser != "")
+                $(".messageDiv").prepend("<h1><b>" + lastuser +": </b></h1>");
+        //$(".messageDiv").prepend("Updated at: " + d.toLocaleTimeString());
         }
     });
 
@@ -70,11 +108,11 @@ function sendMessage(){
     $(document).ready(function(){
         var mystring = document.getElementById("messageText").value;
         //alert(mystring);
-        if(mystring !== undefined){
-            var myStringObject = {"action" : "adduser", "text": mystring , "user": myname};
+        if(mystring != ""){
+            var myStringObject = {"action" : "postmessage", "text": mystring , "user": myname, "conv":"general"};
             var mystringjson = JSON.stringify(myStringObject);
             //alert(mystringjson);
-            var retval = $.post("add_message.php",
+            var retval = $.post("postmessage.php",
                     myStringObject,
                     function(data, status){
                         //alert("Data: " + data + "\nStatus: " + status);
@@ -84,3 +122,4 @@ function sendMessage(){
     });
 
 }
+

@@ -1,19 +1,19 @@
 <?php
 if(!isset($_POST['register'])){?>
-    <div class="loginDiv">
+    <div class="registerDiv">
         <h6>Registrati</h6>
     <form method="post" action="#">
         <p>
             <label for="regusername"><h7>Username:</h7> </label>
-        <input type="text" name="regusername" id="loginusername"><br />
+            <input type="text" name="regusername" id="registerusername"><br />
         </p>
         <p>
             <label for="regpassword"><h7>Password:</h7> </label>
-        <input type="password" name="regpassword" id="loginpassword"><br />
+            <input type="password" name="regpassword" id="registerpassword"><br />
         </p>
         <p>
             <label for="repassword"><h7>Ripeti password: </h7></label>
-        <input type="password" name="repassword" id="loginpassword"> <br />
+            <input type="password" name="repassword" id="registerpassword"> <br />
         </p>
         <input type="submit" name="register" id="register" value="Register">
     </form>
