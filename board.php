@@ -32,11 +32,14 @@ function addusers(){
             </form>
         </div>
     </div>
+    <div id="dialog" title="Create or Join Conversation...">
+        <form>
+            <input type="text" id="convName" name="convName" class="text ui-widget.content" style="width: 500px;">
+        </form>
+    </div>
     <div class="content">
         <div class="roomSelector">
-            <div class="currentRoom">
-                <h5>#global</h5>
-            </div>
+
         </div>
 
         <div class="messageContainer">
@@ -49,7 +52,7 @@ function addusers(){
             <br>
 
         </div>
-        <button onclick = "addConversation()">Add</button>
+
     </div>
     </div>
 <?php

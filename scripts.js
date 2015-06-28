@@ -7,6 +7,8 @@ var currentCoversationId = 1;
 var lastConversation = "demo_post";
 var lastDivId = "room1";
 var forceupdate = false;
+var dialog, form, convBox;
+
 
 function addUser(user){
     userlist.push(user);
@@ -22,15 +24,17 @@ function load(){
             if(e.keyCode==13)
                 $('.sendButton').click();
         });
+        $("#dialog").hide();
     });
     window.setInterval(getMessages, 200);
     conversations.push({"id" : 1, "name" : "general", "filename" : "demo_post.json"});
     getConversations();
+
 }
 
 function getConversations(){
     $(document).ready(function(){
-        $(".roomSelector").empty();
+        /*$(".roomSelector").empty();*/
         $.post("getConversations.php", {'user' : myname}, function(result){}).success(function(result){
             console.log(result);
             if(result != undefined){
@@ -43,10 +47,19 @@ function getConversations(){
             for(var i = 0; i < res.length; i++){
                 conversations.push(res[i]);
             }
+           /* $(".otherRoom").each(function(key, value) {
+                console.log(key);
+            });*/
+            $(".otherRoom").remove();
+            $(".currentRoom").remove();
+            $(".addRoom").remove();
+
             for(var i = 0; i < conversations.length; i++){
-                $(".roomSelector").append('<div class="otherRoom" onclick="selectConversation(\'' + conversations[i]['name'] +'\', \'room' + conversations[i]['id'].toString() +'\')"  id="room' + conversations[i]['id'].toString() +'"><h8>#' + conversations[i]['name'] +'</h8></div>');
+                $(".roomSelector").append('<a href="javascript:none" class="otherRoom" onclick="selectConversation(\'' + conversations[i]['name'] +'\', \'room' + conversations[i]['id'].toString() +'\')"  id="room' + conversations[i]['id'].toString() +'">#' + conversations[i]['name'] +'</a>');
 
             }
+            $(".roomSelector").append('<a href="javascript:none" class="addRoom" onclick="addConversation()"><span>+</span></a>');
+            //console.log("Added +");
         });
     });
 
@@ -159,8 +172,28 @@ var ti=setInterval(function(){
     }, 1000);
 
 function addConversation(){
-    $.post("addConversation.php", {'user' : myname, 'convname' : 'test_extra'}, function(result){}).success(function(result){
+
+    dialog = $('#dialog').dialog({
+        autoOpen: false,
+        width: 550,
+        height: 173,
+        modal: true,
+         buttons: {
+        "Create conversation": function(){
+            convBox = $("#convName");
+            $.post("addConversation.php", {'user' : myname, 'convname' : convBox.val()}, function(result){}).success(function(result){
         console.log(result);
         getConversations();
+        dialog.dialog("close");
     });
+        },
+        Cancel: function() {
+            dialog.dialog("close");
+        }
+      },
+      close: function() {
+      }
+    });
+    $('#dialog').dialog("open");
+
 }
