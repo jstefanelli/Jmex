@@ -55,6 +55,9 @@ function addusers(){
 
     </div>
     </div>
+    <div class="users">
+
+    </div>
 <?php
 
     }else{

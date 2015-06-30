@@ -24,6 +24,13 @@ if(is_ajax()){
         $file_text = fread($conv_file, $conv_file_size);
         $conv = json_decode($file_text, true);
         $messages = $conv['messages'];
+        $lenght = count($conv['users']);
+        for($i = 0; $i < $lenght; $i++){
+            if($conv['users'][$i] == $user_name){
+                fclose($conv_file);
+                die("Already in conversation.");
+            }
+        }
         array_push($conv['users'], $user_name);
         $conv['messages'] = $messages;
         fseek($conv_file, 0);

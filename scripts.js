@@ -131,6 +131,12 @@ function getMessages(){
                 $(".messageDiv").prepend("<h1><b>" + lastuser +": </b></h1>");
         //$(".messageDiv").prepend("Updated at: " + d.toLocaleTimeString());
         }
+        var users = myi.users;
+        $(".users").empty();
+        $(".users").append("<h6>Users in conversation: </h6>");
+        for(var i = 0; i < users.length; i++){
+            $(".users").append("<h2>"+ users[i] +"</h2><br>");
+        }
     });
 
 }
