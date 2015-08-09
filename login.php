@@ -26,11 +26,26 @@
 
 <?php
 }else{
+    $aservername = "localhost";
+	$ausername = "root";
+	$apassword  = "";
+
+	$aconn = mysqli_connect($aservername, $ausername, $apassword);
+
+
+	if(!$aconn){
+		die("Connection failed: " . mysqli_connect_error());
+	}
+    $adb = mysqli_select_db($aconn, "my_jmex");
+    if(!$adb){
+        die("database not found");
+    }
+    mb_internal_encoding('UTF-8');
 $username = $_POST['username'];
 $string = $_POST['password'];
 mb_convert_encoding($string, 'UTF-16LE', 'UTF-8');
 $password = base64_encode(md5($string, true));
-$xget = mysqli_query($conn, "SELECT * FROM users WHERE name = '$username'");
+$xget = mysqli_query($aconn, "SELECT * FROM users WHERE name = '$username'");
 $countquery = mysqli_num_rows($xget);
 if($countquery == 1){
     $rows = mysqli_fetch_array($xget);
@@ -40,10 +55,12 @@ if($countquery == 1){
         $_SESSION['name'] = $username;
         $_SESSION['hash'] = $UUID;
         $myNow = new DateTime("Now");
-        $query2 = mysqli_query($conn, "UPDATE users SET logged = '$UUID', lastActivity = now() WHERE name = '$username'");
+        $query2 = mysqli_query($aconn, "UPDATE users SET logged = '$UUID', lastActivity = now() WHERE name = '$username'");
         if($query2){
             echo "Succesfully logged.";
-            header("location: .");
+            if(!isset($_POST['client'])){
+                header("location: .");
+            }
         }
     }else{
         die("Wrong password");
